@@ -59,6 +59,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            cursor: pointer;
         }
 
         .search-form {
@@ -257,14 +258,6 @@
             color: var(--primary);
         }
 
-        .no-results {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-muted);
-            grid-column: 1 / -1;
-            font-size: 1.1rem;
-        }
-
         footer {
             background-color: white;
             border-top: 1px solid var(--border-color);
@@ -280,7 +273,7 @@
 
     <header>
         <div class="header-container">
-            <a href="#" class="logo" onclick="switchPage('products')">
+            <a class="logo" onclick="switchPage('products')">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                 Name Store
             </a>
@@ -298,34 +291,33 @@
     </header>
 
     <main class="main-container">
-        <!-- PRODUCTS PAGE VIEW -->
+        <!-- PRODUCTS PAGE -->
         <section id="page-products" class="page-view active">
             <div class="hero-banner">
-                <h1>Welcome to Name Store</h1>
-                <p>Discover premium products with sleek aesthetics and simple navigation.</p>
+                <h1>Welcome to Name</h1>
+                <p>Discover premium products with modern blue design and clean aesthetics.</p>
             </div>
 
             <div class="product-grid" id="productGrid">
-                <!-- Product Items -->
-                <div class="product-card" data-title="Name Product 1">
+                <div class="product-card" data-title="Name">
                     <div class="image-placeholder"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div>
                     <div class="product-title">Name</div>
                     <div class="product-price">Price</div>
                     <button class="buy-btn">Buy Now</button>
                 </div>
-                <div class="product-card" data-title="Name Product 2">
+                <div class="product-card" data-title="Name">
                     <div class="image-placeholder"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div>
                     <div class="product-title">Name</div>
                     <div class="product-price">Price</div>
                     <button class="buy-btn">Buy Now</button>
                 </div>
-                <div class="product-card" data-title="Name Product 3">
+                <div class="product-card" data-title="Name">
                     <div class="image-placeholder"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div>
                     <div class="product-title">Name</div>
                     <div class="product-price">Price</div>
                     <button class="buy-btn">Buy Now</button>
                 </div>
-                <div class="product-card" data-title="Name Product 4">
+                <div class="product-card" data-title="Name">
                     <div class="image-placeholder"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div>
                     <div class="product-title">Name</div>
                     <div class="product-price">Price</div>
@@ -334,11 +326,11 @@
             </div>
         </section>
 
-        <!-- ABOUT US PAGE VIEW -->
+        <!-- ABOUT US PAGE -->
         <section id="page-about" class="page-view">
             <div class="about-card">
                 <h2>About Us</h2>
-                <p>Welcome to Name Store. We are dedicated to delivering high-quality solutions, modern digital experiences, and reliable products for our global customers.</p>
+                <p>Welcome to our store. We provide high quality and reliable products for all our customers with a focus on minimalist design and performance.</p>
                 <div class="about-info-box">
                     Established in [year]
                 </div>
@@ -352,8 +344,8 @@
 
     <script>
         function switchPage(pageName) {
-            document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
 
             if (pageName === 'products') {
                 document.getElementById('page-products').classList.add('active');
@@ -362,18 +354,17 @@
                 document.getElementById('page-about').classList.add('active');
                 document.getElementById('btn-about').classList.add('active');
             }
+            window.scrollTo(0, 0);
         }
 
         function filterProducts() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const cards = document.querySelectorAll('.product-card');
-            let visibleCount = 0;
 
             cards.forEach(card => {
                 const title = card.getAttribute('data-title').toLowerCase();
                 if (title.includes(query) || query === '') {
                     card.style.display = 'flex';
-                    visibleCount++;
                 } else {
                     card.style.display = 'none';
                 }
